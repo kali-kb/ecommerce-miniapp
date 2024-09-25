@@ -31,7 +31,6 @@ const loadProduct = async () => {
   } catch (error) {
       console.error('Error fetching product:', error);
   }
-
 }
 
 const changeCurrentImage = (navType) => {
@@ -61,12 +60,13 @@ onMounted(() => {
       router.back()
     })
 
-
     webApp.MainButton.show();
     webApp.MainButton.text = "Contact Seller";
     // webApp.MainButton.color = "#fc6203"
     webApp.MainButton.onClick(() => {
-      window.location.href=`tel:+${seller.value.contact}`
+      webApp.HapticFeedback.notificationOccurred("success")
+      window.location.href=`tel:+${seller.value.contact}` //open phone call
+      // window.location.href = `https://t.me/+${seller.value.contact}`
     });
   } else {
     console.error('Telegram WebApp not initialized');
@@ -77,8 +77,8 @@ onMounted(() => {
 
 <template>
   <div v-if="product" name="image-container" class="h-64 overflow-hidden">
-    <img class="object-contain h-full w-full" :alt="product.name" :src="product.images[currentImage]"></img>
-    <div v-if="product.images.length > 1" name="image-buttons" class="absolute top-28 w-full flex justify-between pl-4 pr-4">
+    <img class="object-contain h-full w-full" :alt="product.name" :src="product.images === null ? 'https://res.cloudinary.com/djlxfcael/image/upload/v1727248658/No_Image_provided_20240924_235913_0000_zkmwzy.png' : product.images[currentImage]"></img>
+    <div v-if="product.images && product.images.length > 1" name="image-buttons" class="absolute top-28 w-full flex justify-between pl-4 pr-4">
       <button @click="changeCurrentImage('prev')" class="bg-[#363A47] rounded-[50px] p-2">
         <ChevronLeft class="text-blue-500" />
       </button>
@@ -86,11 +86,10 @@ onMounted(() => {
         <ChevronRight class="text-blue-500" />
       </button>
     </div>
-    <div v-if="product.images.length > 1" name="position-indicator" class="absolute flex gap-1 bg-[#363A47] top-56 left-1/2 p-2 rounded-xl -translate-x-1/2">
+    <div v-if="product.images && product.images.length > 1" name="position-indicator" class="absolute flex gap-1 bg-[#363A47] top-56 left-1/2 p-2 rounded-xl -translate-x-1/2">
       <div v-for="(image, index) in product.images" :key="image" :class="{'bg-blue-500': index == currentImage,'bg-gray-500': index != currentImage }" class="h-2 w-2 rounded-full"></div>
     </div>
   </div>
-
   <div v-if="product">
     <h1 class="m-4 text-blue-500 font-bold">Product Information</h1>
     <div name="section">

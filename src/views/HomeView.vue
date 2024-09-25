@@ -172,7 +172,7 @@ watch(searchTerm, (newValue, oldValue) => {
     <div name="products-container" class="items-center grid grid-cols-2 gap-2 pl-2 pr-2 mb-4 place-items-center overflow-y-scroll">
       <div v-if="products && products.length !== 0" v-for="item in products" :key="item.product.id" @click="router.push(`/products/${item.product.id}`)" name="product" class="w-44 bg-[#363A47] active:scale-95 duration-200 shadow-md rounded-lg overflow-hidden">
         <div class="relative">
-          <img :src="item.product.images[0]"
+          <img :src="!item.product.images ? 'https://res.cloudinary.com/djlxfcael/image/upload/v1727248658/No_Image_provided_20240924_235913_0000_zkmwzy.png' : item.product.images[0]"
             :alt="item.product.name" class="w-full h-36 object-cover" />
           <!-- <span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-xs font-bold rounded">
             50% OFF
