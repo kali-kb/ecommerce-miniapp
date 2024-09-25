@@ -1,5 +1,28 @@
-# Vue 3 + Vite
+# Online Marketplace Ethiopia Miniapp
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a mini app designed to connect buyers and sellers in a streamlined and user-friendly environment. 
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+* **Buyer Features:**
+    * Browse Products
+    * Contact Seller
+
+* **Seller Features:**
+    * List Products
+    * Manage Inventory
+
+## Technologies Used
+
+* **Frontend:**  Vue.js
+* **Backend:** Node.js with Express
+* **Database:** PostgreSQL
+
+
+## Contributing
+
+**(Provide guidelines for contributions if applicable)**
+
+## License
+
+**(Specify the license under which the project is released)**
